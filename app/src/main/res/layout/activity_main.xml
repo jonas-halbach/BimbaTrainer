@@ -6,30 +6,90 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MainActivity">
-
-    <com.google.android.material.appbar.AppBarLayout
-            android:layout_height="wrap_content"
+    <!--<include layout="@layout/content_main"/>-->
+    <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:theme="@style/Theme.BimbaTrainer.AppBarOverlay">
+            android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
+        <RadioGroup
+                android:id="@+id/playerCountRadioGroup"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                app:popupTheme="@style/Theme.BimbaTrainer.PopupOverlay"/>
+                android:layout_height="50dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="parent"
+                android:checkedButton="@id/singlePlayerRadionBtn"
+                android:orientation="horizontal">
+            <RadioButton
+                    android:text="@string/one_player"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/singlePlayerRadionBtn"
+            ></RadioButton>
+            <RadioButton
+                    android:text="@string/two_player"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/twoPlayerRadioBtn"></RadioButton>
+        </RadioGroup>
 
-    </com.google.android.material.appbar.AppBarLayout>
+        <RadioGroup
+                android:id="@+id/sequenceChoiceRadioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:layout_constraintStart_toStartOf="@id/playerCountRadioGroup" android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="@id/playerCountRadioGroup" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/playerCountRadioGroup"
+                android:checkedButton="@id/bimbaSequenceRadioBtn"
+                android:orientation="horizontal">
+            <RadioButton
+                    android:text="@string/sequence_bimba"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/bimbaSequenceRadioBtn"></RadioButton>
+            <RadioButton
+                    android:text="@string/sequence_miudinho"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/miudinhoSequenceRadioBtn"></RadioButton>
+            <RadioButton
+                    android:text="@string/sequence_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/allRadionBtn"></RadioButton>
+        </RadioGroup>
 
-    <include layout="@layout/content_main"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginEnd="@dimen/fab_margin"
-            android:layout_marginBottom="16dp"
-            app:srcCompat="@android:drawable/ic_dialog_email"/>
+        <RadioGroup
+                android:id="@+id/orderChoiceRadioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:layout_constraintStart_toStartOf="@id/playerCountRadioGroup" android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="@id/playerCountRadioGroup" android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/playerCountRadioGroup"
+                android:checkedButton="@id/bimbaSequenceRadioBtn"
+                android:orientation="horizontal">
+            <RadioButton
+                    android:text="@string/ascending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/ascendingSequenceRadioBtn"></RadioButton>
+            <RadioButton
+                    android:text="@string/descending"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/descendingSequenceRadioBtn"></RadioButton>
+            <RadioButton
+                    android:text="@string/random"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/randomSequenceRadioBtn"></RadioButton>
+
+        </RadioGroup>
+        <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/speedSelectionBar" android:max="300"
+                android:progress="150"/>
+        <Button
+                android:text="@string/start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/start_button" android:onClick="startExercise"/>
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
