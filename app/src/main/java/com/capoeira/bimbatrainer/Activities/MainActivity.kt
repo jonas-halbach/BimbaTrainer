@@ -1,25 +1,21 @@
-package com.capoeira.bimbatrainer
+package com.capoeira.bimbatrainer.Activities
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.RadioGroup
 import android.widget.SeekBar
-import androidx.core.view.get
+import com.capoeira.bimbatrainer.R
 import com.capoeira.bimbatrainer.databinding.ActivityMainBinding
 
-const val SPEED_MESSAGE = "com.capoeira.bimbatrainer.SPEED_MESSAGE"
-const val PLAYER_COUNT_MESSAGE =  "com.capoeira.bimbatrainer.PLAYER_COUNT_MESSAGE"
-const val SEQUENCE_MESSAGE = "com.capoeira.bimbatrainer.SEQUENCE_MESSAGE"
-const val ORDER_MESSAGE =  "com.capoeira.bimbatrainer.ORDER_MESSAGE"
+const val SPEED_MESSAGE = "com.capoeira.bimbatrainer.Activities.SPEED_MESSAGE"
+const val PLAYER_COUNT_MESSAGE =  "com.capoeira.bimbatrainer.Activities.PLAYER_COUNT_MESSAGE"
+const val SEQUENCE_MESSAGE = "com.capoeira.bimbatrainer.Activities.SEQUENCE_MESSAGE"
+const val ORDER_MESSAGE =  "com.capoeira.bimbatrainer.Activities.ORDER_MESSAGE"
 
 class MainActivity : AppCompatActivity() {
 
