@@ -5,6 +5,31 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Activities.ExerciseActivity">
+        tools:context=".activities.ExerciseActivity">
 
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="409dp"
+            android:layout_height="729dp" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="16dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="16dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="16dp" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="16dp">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/countDownText" android:textSize="34sp"
+                android:textAlignment="center"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/sequenceTypeText" android:textSize="34sp"
+                android:textAlignment="center"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/sequenceNumberText" android:textSize="34sp"
+                android:textAlignment="center"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/sequencePartText" android:textSize="34sp"
+                android:textAlignment="center"/>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
