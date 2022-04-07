@@ -5,7 +5,7 @@ import com.capoeira.bimbatrainer.sequences.SequenceItem
 
 class SequenceTypeTextRenderer(textView : TextView) : TextRenderer(textView) {
 
-    override fun render(sequenceItem: SequenceItem) {
-        textView?.setText(sequenceItem.sequence)
+    override fun render(exerciseRenderItem: ExerciseRenderItem) {
+        textView?.text = exerciseRenderItem.sequenceTypeName
     }
 }

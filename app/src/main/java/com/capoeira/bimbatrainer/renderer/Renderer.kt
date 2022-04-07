@@ -4,5 +4,5 @@ import com.capoeira.bimbatrainer.sequences.SequenceItem
 
  abstract class Renderer {
 
-    abstract fun render(sequenceItem: SequenceItem)
+    abstract fun render(exerciseRenderItem: ExerciseRenderItem)
 }
