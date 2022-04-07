@@ -7,9 +7,11 @@ import com.capoeira.bimbatrainer.R
 import com.capoeira.bimbatrainer.enums.Order
 import com.capoeira.bimbatrainer.enums.PlayerCount
 import com.capoeira.bimbatrainer.enums.SequenceTypes
+import com.capoeira.bimbatrainer.helper.RandomCharacterGenerator
 import com.capoeira.bimbatrainer.helper.SequenceSelector
 import com.capoeira.bimbatrainer.helper.SequenceSelectorFactory
 import com.capoeira.bimbatrainer.helper.TextRendererFactory
+import com.capoeira.bimbatrainer.renderer.ExerciseRenderItem
 import com.capoeira.bimbatrainer.renderer.Renderer
 import com.capoeira.bimbatrainer.sequences.SequenceItem
 import java.util.*
@@ -25,6 +27,8 @@ class ExerciseActivity : AppCompatActivity() {
     var renderer : MutableList<Renderer> = mutableListOf<Renderer>()
 
     var rendererFactory = TextRendererFactory()
+
+    var randomCharacterGenerator = RandomCharacterGenerator(arrayOf<Char>('A', 'B'))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,14 +73,18 @@ class ExerciseActivity : AppCompatActivity() {
     fun startNewSequence(orderChoice: Int, sequenceChoice: Int) {
 
         var sequenceItem = sequenceSelector?.getNextSequenceItem()
+        var sequencePart = randomCharacterGenerator.getRandomChar()
 
-        Render(sequenceItem)
+        if(sequenceItem != null) {
+            var exerciseRenderItem = ExerciseRenderItem(sequenceItem, sequencePart)
+            Render(exerciseRenderItem)
+        }
     }
 
-    fun Render(sequenceItem : SequenceItem?) {
-        if (sequenceItem != null) {
+    fun Render(exerciseRenderItem: ExerciseRenderItem) {
+        if (exerciseRenderItem != null) {
             for (currentRenderer in renderer) {
-                currentRenderer.render(sequenceItem)
+                currentRenderer.render(exerciseRenderItem)
             }
         }
     }
