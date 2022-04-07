@@ -13,22 +13,16 @@ class TextRendererFactory {
 
     fun createSequencePartRenderer(textView : TextView, playerCount : Int) : Renderer {
         var textRenderer : TextRenderer? = null
-        if(playerCount > 1) {
+        if(playerCount == 1) {
             textRenderer = SequencePartTextRenderer(textView)
         }
         else {
             textRenderer = EmptyTextRenderer(textView)
         }
-        return SequencePartTextRenderer(textView)
+        return textRenderer
     }
 
     fun createSequenceTypeRenderer(textView: TextView, sequenceTypes: SequenceTypes) : Renderer {
-        var textRenderer : TextRenderer? = null
-        if(sequenceTypes == SequenceTypes.ALL) {
-            textRenderer = SequenceTypeTextRenderer(textView)
-        } else {
-            textRenderer = EmptyTextRenderer(textView)
-        }
-        return textRenderer
+        return  SequenceTypeTextRenderer(textView)
     }
 }
