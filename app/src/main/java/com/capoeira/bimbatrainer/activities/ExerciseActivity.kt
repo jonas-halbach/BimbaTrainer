@@ -1,17 +1,20 @@
 package com.capoeira.bimbatrainer.activities
 
+import android.content.Context
+import android.media.AudioManager
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.widget.TextView
 import com.capoeira.bimbatrainer.R
 import com.capoeira.bimbatrainer.enums.Order
 import com.capoeira.bimbatrainer.enums.PlayerCount
 import com.capoeira.bimbatrainer.enums.SequenceTypes
-import com.capoeira.bimbatrainer.helper.RandomCharacterGenerator
-import com.capoeira.bimbatrainer.helper.SequenceSelector
-import com.capoeira.bimbatrainer.helper.SequenceSelectorFactory
-import com.capoeira.bimbatrainer.helper.TextRendererFactory
+import com.capoeira.bimbatrainer.helper.*
+import com.capoeira.bimbatrainer.renderer.AudioRenderer
 import com.capoeira.bimbatrainer.renderer.ExerciseRenderItem
+import com.capoeira.bimbatrainer.renderer.NumberAudioRenderer
 import com.capoeira.bimbatrainer.renderer.Renderer
 import com.capoeira.bimbatrainer.sequences.SequenceItem
 import java.util.*
@@ -30,7 +33,17 @@ class ExerciseActivity : AppCompatActivity() {
 
     var randomCharacterGenerator = RandomCharacterGenerator(arrayOf<Char>('A', 'B'))
 
+    var timer : Timer? = null
+
+    var audioPathGenerator : AudioPathGenerator? = null
+
+    var audioRendererFactory : AudioRendererFactory? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        audioPathGenerator = AudioPathGenerator(this)
+
+        audioRendererFactory = AudioRendererFactory(audioPathGenerator, assets)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exercise)
 
@@ -46,15 +59,18 @@ class ExerciseActivity : AppCompatActivity() {
         addSequenceTypeTextRenderer(sequenceType)
         addSequenceNumberTextRenderer()
         addSequencePartTextRenderer(playerCount)
+        addSequenceTypeAudioRenderer(sequenceType)
+        addNumberAudioRenderer()
+        addPlayerCountAudioRenderer(playerCount)
+
 
         var countDownText : TextView = findViewById(R.id.countDownText)
 
         sequenceSelector = sequenceSelectorFactory.createSequenceSelector(getOrder(orderChoiceMessageData), sequenceType)
         startNewSequence(orderChoiceMessageData, sequenceChoiceMessageData)
 
-
-        var timer = Timer()
-        timer.schedule(
+        timer = Timer()
+        timer?.schedule(
             object : TimerTask() {
                 var currentCountDownTime : Int = maxCountDownTime
 
@@ -68,6 +84,13 @@ class ExerciseActivity : AppCompatActivity() {
                     }
                 }
             }, 0, 1000)
+
+
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        timer?.cancel()
     }
 
     fun startNewSequence(orderChoice: Int, sequenceChoice: Int) {
@@ -140,5 +163,26 @@ class ExerciseActivity : AppCompatActivity() {
         var sequencePartTextView = findViewById<TextView>(R.id.sequencePartText)
         var sequencePartRenderer = rendererFactory.createSequencePartRenderer(sequencePartTextView, playerCount)
         renderer.add(sequencePartRenderer)
+    }
+
+    fun addSequenceTypeAudioRenderer(sequenceType: SequenceTypes) {
+        var audioRenderer = audioRendererFactory?.createSequenceTypeAudioRenderer(sequenceType)
+        if(audioRenderer  != null) {
+            renderer.add(audioRenderer)
+        }
+    }
+
+    fun addNumberAudioRenderer() {
+        var audioRenderer = audioRendererFactory?.createNumberAudioRenderer()
+        if(audioRenderer != null) {
+            renderer.add(audioRenderer)
+        }
+    }
+
+    fun addPlayerCountAudioRenderer(playerCount : Int) {
+        var audioRenderer = audioRendererFactory?.createSequencePartAudioRenderer(playerCount)
+        if(audioRenderer != null) {
+            renderer.add(audioRenderer)
+        }
     }
 }
