@@ -3,8 +3,9 @@ package com.capoeira.bimbatrainer.renderer
 import android.content.Context
 import android.content.res.AssetManager
 import com.capoeira.bimbatrainer.helper.AudioPathGenerator
+import com.capoeira.bimbatrainer.helper.AudioPlayer
 
-class SequenceTypeAudioRenderer(audioPathGenerator : AudioPathGenerator?, assetManager: AssetManager) : AudioRenderer(assetManager) {
+class SequenceTypeAudioRenderer(audioPathGenerator : AudioPathGenerator?, audioPlayer: AudioPlayer) : AudioRenderer(audioPlayer) {
 
     var audioPathGenerator: AudioPathGenerator? = null
 

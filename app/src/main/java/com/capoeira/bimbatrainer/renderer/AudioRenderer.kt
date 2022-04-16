@@ -3,38 +3,17 @@ package com.capoeira.bimbatrainer.renderer
 import android.content.res.AssetManager
 import android.media.MediaPlayer
 import android.media.MediaPlayer.OnCompletionListener
+import com.capoeira.bimbatrainer.helper.AudioPlayer
 
-abstract class AudioRenderer : Renderer {
+abstract class AudioRenderer(audioPlayer: AudioPlayer) : Renderer() {
 
-    private var assetManager : AssetManager? = null
+    var audioPlayer: AudioPlayer
 
-    constructor(assetManager : AssetManager) {
-        this.assetManager = assetManager
+    init {
+        this.audioPlayer = audioPlayer
     }
 
-    fun playAudio(pathToAudioFile : String) {
-        try {
-            var audio = assetManager?.openFd(pathToAudioFile)
-            if (audio != null) {
-                var mediaPlayer = MediaPlayer()
-
-                mediaPlayer.setVolume(1.0f, 1.0f)
-                mediaPlayer.setDataSource(audio.fileDescriptor, audio.startOffset, audio.length)
-                mediaPlayer.prepare()
-                mediaPlayer.start()
-                mediaPlayer.setOnCompletionListener(AudioPlayBackDoneListener())
-            }
-        } catch (e : Exception) {
-            //TODO: Handle properly
-        }
+    fun playAudio(numberFilePath : String) {
+        audioPlayer.playAudio(numberFilePath)
     }
-}
-
-class AudioPlayBackDoneListener : OnCompletionListener {
-    override fun onCompletion(p0: MediaPlayer?) {
-        p0?.stop()
-        p0?.reset()
-        p0?.release()
-    }
-
 }
