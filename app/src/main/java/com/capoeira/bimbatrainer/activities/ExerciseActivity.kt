@@ -42,7 +42,8 @@ class ExerciseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         audioPathGenerator = AudioPathGenerator(this)
 
-        audioRendererFactory = AudioRendererFactory(audioPathGenerator, assets)
+        var audioPlayer = AudioPlayer(assets)
+        audioRendererFactory = AudioRendererFactory(audioPathGenerator, audioPlayer)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exercise)
@@ -62,7 +63,6 @@ class ExerciseActivity : AppCompatActivity() {
         addSequenceTypeAudioRenderer(sequenceType)
         addNumberAudioRenderer()
         addPlayerCountAudioRenderer(playerCount)
-
 
         var countDownText : TextView = findViewById(R.id.countDownText)
 
@@ -84,8 +84,6 @@ class ExerciseActivity : AppCompatActivity() {
                     }
                 }
             }, 0, 1000)
-
-
     }
 
     override fun onDestroy() {

@@ -4,25 +4,25 @@ import android.content.res.AssetManager
 import com.capoeira.bimbatrainer.enums.SequenceTypes
 import com.capoeira.bimbatrainer.renderer.*
 
-class AudioRendererFactory(audioPathGenerator: AudioPathGenerator?, assets: AssetManager) {
+class AudioRendererFactory(audioPathGenerator: AudioPathGenerator?, audioPlayer: AudioPlayer) {
 
     var audioPathGenerator: AudioPathGenerator?
-    var assets: AssetManager
+    var audioPlayer: AudioPlayer
 
     init{
         this.audioPathGenerator = audioPathGenerator
-        this.assets = assets
+        this.audioPlayer = audioPlayer
     }
 
     fun createNumberAudioRenderer() : Renderer {
-        return NumberAudioRenderer(audioPathGenerator, assets)
+        return NumberAudioRenderer(audioPathGenerator, audioPlayer)
     }
 
     fun createSequenceTypeAudioRenderer(sequenceTypes : SequenceTypes) : Renderer {
         var sequenceTypeAudioRenderer : Renderer = NullRenderer()
 
         if(sequenceTypes == SequenceTypes.ALL) {
-            sequenceTypeAudioRenderer = SequenceTypeAudioRenderer(audioPathGenerator, assets)
+            sequenceTypeAudioRenderer = SequenceTypeAudioRenderer(audioPathGenerator, audioPlayer)
         }
 
         return sequenceTypeAudioRenderer
@@ -32,7 +32,7 @@ class AudioRendererFactory(audioPathGenerator: AudioPathGenerator?, assets: Asse
         var playerCountAudioRenderer : Renderer = NullRenderer()
 
         if(playerCount == 1) {
-            playerCountAudioRenderer = PlayerCountAudioRenderer(audioPathGenerator, assets)
+            playerCountAudioRenderer = PlayerCountAudioRenderer(audioPathGenerator, audioPlayer)
         }
 
         return playerCountAudioRenderer
