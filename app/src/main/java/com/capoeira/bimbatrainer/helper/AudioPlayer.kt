@@ -1,15 +1,12 @@
 package com.capoeira.bimbatrainer.helper
-
-import android.content.res.AssetFileDescriptor
 import android.content.res.AssetManager
 import android.media.MediaPlayer
 import android.media.MediaPlayer.OnCompletionListener
-import java.util.PriorityQueue
-import java.util.Queue
+import java.util.*
 
 class AudioPlayer {
 
-    var audiosToPlay : Queue<AssetFileDescriptor>
+    var audiosToPlay : Queue<String>
 
     private var assetManager : AssetManager? = null
 
@@ -17,7 +14,7 @@ class AudioPlayer {
 
     constructor(assetManager : AssetManager) {
         this.assetManager = assetManager
-        audiosToPlay = PriorityQueue<AssetFileDescriptor>()
+        audiosToPlay = LinkedList<String>()
         mediaPlayer = MediaPlayer()
         mediaPlayer?.setVolume(1.0f, 1.0f)
         mediaPlayer?.setOnCompletionListener(AudioOnCompletionListener(this))
@@ -26,8 +23,8 @@ class AudioPlayer {
     fun playAudio(pathToAudioFile : String) {
         try {
             System.out.println("Play audio: " + pathToAudioFile)
-            var audio = assetManager?.openFd(pathToAudioFile)
-            audiosToPlay.add(audio)
+
+            audiosToPlay.add(pathToAudioFile)
 
             if (!mediaPlayer!!.isPlaying) {
                 startNewAudio()
@@ -39,20 +36,22 @@ class AudioPlayer {
 
     @Synchronized
     fun startNewAudio() {
+        synchronized(this) {
+            var audiosLeftToPlay: Boolean = !audiosToPlay.isEmpty();
 
-        var audiosLeftToPlay : Boolean = audiosToPlay.size > 0
-
-        System.out.println("Start new audio: Audios left to play " + audiosLeftToPlay)
-        if(audiosLeftToPlay) {
-            var audio = audiosToPlay.remove()
-            System.out.println("Start new audio: Audio to play is null " + audio == null)
-            if (audio != null) {
-                try {
-                    mediaPlayer?.setDataSource(audio.fileDescriptor, audio.startOffset, audio.length)
-                    mediaPlayer?.prepare()
-                    mediaPlayer?.start()
-                } catch (e: Exception) {
-                    //TODO: Handle properly
+            System.out.println("Start new audio: Audios left to play " + audiosLeftToPlay)
+            if (audiosLeftToPlay) {
+                var pathToAudioFile = audiosToPlay.remove()
+                var audio = assetManager?.openFd(pathToAudioFile)
+                System.out.println("Start new audio: Audio to play is null " + pathToAudioFile)
+                if (audio != null) {
+                    try {
+                        mediaPlayer?.setDataSource(audio.fileDescriptor, audio.startOffset, audio.length)
+                        mediaPlayer?.prepare()
+                        mediaPlayer?.start()
+                    } catch (e: Exception) {
+                        //TODO: Handle properly
+                    }
                 }
             }
         }
