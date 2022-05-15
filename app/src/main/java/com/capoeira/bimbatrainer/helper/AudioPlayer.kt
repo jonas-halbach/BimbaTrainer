@@ -37,6 +37,7 @@ class AudioPlayer {
         }
     }
 
+    @Synchronized
     fun startNewAudio() {
 
         var audiosLeftToPlay : Boolean = audiosToPlay.size > 0
@@ -69,9 +70,9 @@ class AudioOnCompletionListener : OnCompletionListener {
     override fun onCompletion(p0: MediaPlayer?) {
         System.out.println("onComplete!")
 
-        p0?.stop()
+        //p0?.stop()
         p0?.reset()
-        p0?.release()
+        //p0?.release()
         owner.startNewAudio()
     }
 }
