@@ -34,6 +34,7 @@ class AudioPlayer {
         }
     }
 
+    @Synchronized
     fun startNewAudio() {
         synchronized(this) {
             var audiosLeftToPlay: Boolean = !audiosToPlay.isEmpty();
