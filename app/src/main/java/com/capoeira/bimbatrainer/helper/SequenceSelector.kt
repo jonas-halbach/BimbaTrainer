@@ -34,7 +34,7 @@ abstract class SequenceSelector(sequenceChoice : SequenceTypes) {
         var nextSequenceItem = SequenceItem("No Sequence Item found", -1)
 
         var nextSequenceItemIndex = getNextSequenceItemIndex()
-        if(nextSequenceItemIndex > 0 && nextSequenceItemIndex < possibleSequences.count()) {
+        if(nextSequenceItemIndex >= 0 && nextSequenceItemIndex < possibleSequences.count()) {
             nextSequenceItem = possibleSequences[nextSequenceItemIndex]
         }
         return nextSequenceItem

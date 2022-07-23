@@ -18,7 +18,7 @@ class DescendingSequenceSelector : SequenceSelector {
 
     fun increaseCurrentIndex() {
         currentIndex--
-        if(currentIndex <= 0) {
+        if(currentIndex < 0) {
             currentIndex = possibleSequences.count() -1
         }
     }

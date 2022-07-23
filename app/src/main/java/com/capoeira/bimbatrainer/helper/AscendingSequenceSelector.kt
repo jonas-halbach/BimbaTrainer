@@ -18,7 +18,7 @@ class AscendingSequenceSelector : SequenceSelector {
 
     fun increaseCurrentIndex() {
         currentIndex++
-        if(currentIndex >= possibleSequences.count()) {
+        if(currentIndex > possibleSequences.count() -1) {
             currentIndex = 0
         }
     }
