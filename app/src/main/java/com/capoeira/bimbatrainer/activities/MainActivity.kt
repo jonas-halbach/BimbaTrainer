@@ -9,6 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.RadioGroup
 import android.widget.SeekBar
+import android.widget.TextView
 import com.capoeira.bimbatrainer.R
 import com.capoeira.bimbatrainer.databinding.ActivityMainBinding
 
@@ -22,11 +23,39 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
+    private lateinit var maxSequenceTimeConfigurationSeekBar : SeekBar
+    private lateinit var maxSequenceTimeConfigurationTextView : TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        maxSequenceTimeConfigurationSeekBar = findViewById<SeekBar>(R.id.speedSelectionBar)
+
+        maxSequenceTimeConfigurationTextView = findViewById<TextView>(R.id.max_sequenceTime_textView)
+        maxSequenceTimeConfigurationTextView.text = "" + maxSequenceTimeConfigurationSeekBar.progress
+
+        maxSequenceTimeConfigurationSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+
+            override fun onProgressChanged(p0: SeekBar?, currentValue: Int, p2: Boolean) {
+                var newProgressValue = currentValue
+                if(currentValue <= 0) {
+                    newProgressValue = 1
+                    p0?.progress = newProgressValue
+                }
+
+                maxSequenceTimeConfigurationTextView.text = "" + newProgressValue
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {}
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {}
+
+        })
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -86,6 +115,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getSpeed() : Int {
-        return findViewById<SeekBar>(R.id.speedSelectionBar).progress
+        return maxSequenceTimeConfigurationSeekBar.progress
     }
 }

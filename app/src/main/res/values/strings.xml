@@ -26,4 +26,6 @@
     <string name="audio_basepath">audio/de_DE/</string>
     <string name="audio_number_basepath">audio/de_DE/number</string>
 
+    <string name="seconds_short_label">s</string>
+
 </resources>

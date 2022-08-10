@@ -82,10 +82,25 @@
                     android:layout_height="wrap_content" android:id="@+id/randomSequenceRadioBtn"></RadioButton>
 
         </RadioGroup>
-        <SeekBar
+        <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/speedSelectionBar" android:max="300"
-                android:progress="150"/>
+                android:layout_height="50dp">
+            <SeekBar
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content" android:id="@+id/speedSelectionBar" android:max="30"
+                    android:progress="5"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/max_sequenceTime_textView"
+                    android:text="30"/>
+            <TextView
+                    android:text="@string/seconds_short_label"
+                    android:layout_width="10dp"
+                    android:layout_gravity="right"
+                    android:layout_height="wrap_content" android:id="@+id/unit_textView"/>
+
+        </LinearLayout>
         <Button
                 android:text="@string/start"
                 android:layout_width="match_parent"
