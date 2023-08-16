@@ -1,0 +1,20 @@
+<p>
+    Diese App unterstützt dabei die Miudinho und die Sequenzen von Mestre Bimba zu trainieren. 
+    Dazu gibt es die folgenden Optionen:
+</p>
+<ul>
+    <li>1 player / 2 player: Zum Festlegen, ob die Sequenzen alleine oder mit Partner*in trainiert werden.</li>
+    <li>Bimba / Miudinho / All: Zum Festlegen, ob Bimba / Miudinho oder beide Sequenzen trainiert werden sollen.</li>
+    <li>Ascending / Descending / Random: Zum Festlegen, in welcher Reihenfolge (aufsteigend / absteigend / zufällig) die
+     Sequenzen trainiert werden sollen. </li>
+    <li>Der Schieberegler gibt die Zeitspanne vor, die für die Ausführung einer Sequenz zu Verfügung steht.</li>
+</ul>
+
+Mit einem Klick auf Start wird die Trainingseinheit gestartet.
+
+<h2>Bimba Sequenzen</h2>
+<p>
+    <a href="https://www.youtube.com/watch?v=C7l44vIrLgE">
+        Hier eine Referenz für die richtige Ausübung der Bimba-Sequenzen.
+    </a>
+</p>

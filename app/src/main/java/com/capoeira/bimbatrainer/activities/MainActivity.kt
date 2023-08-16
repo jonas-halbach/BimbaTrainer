@@ -96,6 +96,12 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun openInstructions(view: View) {
+        val intent = Intent(this, InstructionsActivity::class.java)
+
+        startActivity(intent)
+    }
+
     fun getPlayerCountChoice(): Int {
         return getRadioButtonChoice(R.id.playerCountRadioGroup)
     }
