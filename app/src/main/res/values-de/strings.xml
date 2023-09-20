@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BimbaTrainer</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="one_player">1 Spieler</string>
+    <string name="two_player">2 Spieler</string>
+    <string name="sequence_bimba">Bimba</string>
+    <string name="sequence_miudinho">Miudinho</string>
+    <string name="sequence_all">Alle</string>
+    <string name="ascending">Aufsteigend</string>
+    <string name="descending">Absteigend</string>
+    <string name="random">Zufällig</string>
+    <string name="start">Start</string>
+    <string name="audio_basepath">audio/de_DE/</string>
+    <string name="audio_number_basepath">audio/de_DE/number</string>
+    <string name="seconds_short_label">s</string>
+</resources>
