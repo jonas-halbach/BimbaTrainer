@@ -24,8 +24,8 @@
     <string name="start">Start</string>
     <string name="instructions">Anleitung</string>
 
-    <string name="audio_basepath">audio/de_DE/</string>
-    <string name="audio_number_basepath">audio/de_DE/number</string>
+    <string name="audio_basepath">audio/en_US/</string>
+    <string name="audio_number_basepath">audio/en_US/number</string>
 
     <string name="text_basepath">text/de_DE/</string>
 

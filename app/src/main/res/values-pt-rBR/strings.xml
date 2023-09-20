@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">BimbaTrainer</string>
+    <string name="action_settings">Configuração</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="one_player">1 jogador</string>
+    <string name="two_player">2 jogador</string>
+
+    <string name="sequence_bimba">Bimba</string>
+    <string name="sequence_miudinho">Miudinho</string>
+    <string name="sequence_all">Todos</string>
+
+    <string name="ascending">Crescente</string>
+    <string name="descending">Decrescente</string>
+    <string name="random">Casual</string>
+
+    <string name="start">Arrancar</string>
+
+    <string name="audio_basepath">audio/pt_BR/</string>
+    <string name="audio_number_basepath">audio/pt_BR/number</string>
+
+    <string name="seconds_short_label">s</string>
+</resources>
